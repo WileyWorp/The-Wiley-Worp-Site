@@ -1,2 +1,2 @@
 # Website-Adventures
- Just a place for me to test out some website stuff
+Don't take this and post it as your own, this is just a place for me to keep my code and for people to check it out.
