@@ -100,7 +100,7 @@ footer {
 }
 
 .imagesUnderFooter figure img {
-    border: 1px solid white;
+    border: 1px solid black;
     border-radius: 50%;
     box-shadow: black 0px 0px 10px;
     width: 200px;
