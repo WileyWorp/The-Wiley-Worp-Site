@@ -75,7 +75,6 @@ a:hover {
 
 .features figure img {
     border: 1px solid white;
-    border-radius: 50%;
     box-shadow: black 0px 0px 10px;
     width: 200px;
 }
@@ -83,4 +82,26 @@ a:hover {
 footer {
     background: rgb(22, 22, 22);
     padding: 10px 20px;
+}
+
+/* Images Under Footer */
+
+.imagesUnderFooter {
+    background: rgb(53, 53, 53);
+    color: whitesmoke;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.imagesUnderFooter figure {
+    margin: auto;
+    width: 100px;
+}
+
+.imagesUnderFooter figure img {
+    border: 1px solid white;
+    border-radius: 50%;
+    box-shadow: black 0px 0px 10px;
+    width: 200px;
 }
