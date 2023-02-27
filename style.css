@@ -1,3 +1,23 @@
+/* Home Page Specifics */
+
+.title {
+    margin-top: 40px;
+    font-size: 4rem;
+    padding: 50px;
+}
+
+.homeProfileImage {
+    width: 30%;
+    height: 30%;
+    margin-top: 0px;
+    margin-left: 50px;
+    border: 1px solid whitesmoke;
+    border-radius: 50%;
+    box-shadow: black 0px 0px 10px;
+}
+
+/* Body */
+
 body {
     background :rgb(53, 53, 53);
     color: white;
