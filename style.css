@@ -125,3 +125,13 @@ footer {
     box-shadow: black 0px 0px 10px;
     width: 200px;
 }
+
+/* dk what to call this */
+
+.breakbetweenlinks {
+    margin-right: 810px;
+}
+
+.wip {
+    height: 200px;
+}
