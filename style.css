@@ -1,14 +1,15 @@
 /* Home Page Specifics */
 
 .title {
+    background-color: rgb(30, 30, 30);
     margin-top: 40px;
     font-size: 4rem;
     padding: 50px;
 }
 
 .homeProfileImage {
-    width: 30%;
-    height: 30%;
+    width: 25%;
+    height: 25%;
     margin-top: 0px;
     margin-left: 50px;
     border: 1px solid whitesmoke;
@@ -22,8 +23,8 @@ body {
     background: rgb(53, 53, 53);
     color: white;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding-left: 0;
 }
 
 /* Header */
