@@ -17,6 +17,14 @@
     box-shadow: black 0px 0px 10px;
 }
 
+.homeText {
+    display: flex;
+}
+
+.homeParagraph {
+    margin-left: 100px;
+}
+
 /* Body */
 
 body {
