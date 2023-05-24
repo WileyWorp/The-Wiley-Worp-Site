@@ -1,3 +1,5 @@
+// BLOG? I think so
+
 // Get the current date and format it as "Month Day, Year"
 function getCurrentDate() {
     const currentDate = new Date();
