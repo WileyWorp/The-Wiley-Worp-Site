@@ -40,7 +40,7 @@ body {
 header {
     background-color: rgb(255, 255, 255);
     background-image: url(images/hero.jpg);
-    background-size: 45%;
+    background-size: 50%;
     background-position: center;
     background-repeat: no-repeat;
     padding: 20px 10px 210px;
@@ -90,6 +90,9 @@ a:hover {
     text-decoration: underline;
 }
 
+.breakbetweenlinks {
+    margin-right: 57%;
+}
 /* Features */
 
 .features {
@@ -140,10 +143,67 @@ footer {
 
 /* dk what to call this */
 
-.breakbetweenlinks {
-    margin-right: 810px;
-}
-
 .wip {
     height: 200px;
+}
+
+
+/* Responsive Dimensions */
+
+@media (orientation: portrait) {
+
+    /* Header */
+    header {
+        background-size: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 20px 10px 21px;
+        text-align: left;
+    }
+
+
+    header a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        margin-top: 30px;
+    }
+
+    header .logo a {
+        background-image: url(images/logo.png);
+        background-size: 64px;
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 64px;
+        position: relative;
+        text-indent: -9999999px;
+        width: 64px;
+    }
+
+    /* Navigation */
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    nav li {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    nav a {
+        color: black
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+
 }
