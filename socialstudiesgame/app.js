@@ -89,10 +89,10 @@ const questions = [
         incorrectAnswers: ["F"]
     },
     {
-        question: "True or false: The bill of rights was in the original draft of the constitution",
+        question: "True or false: The bill of rights was NOT in the original draft of the constitution",
         options: ["T", "F"],
-        correctAnswer: "F",
-        incorrectAnswers: ["T"]
+        correctAnswer: "T",
+        incorrectAnswers: ["F"]
     },
     {
         question: "True or false: The executive branch has more power than the other branches",
@@ -113,15 +113,15 @@ const questions = [
         incorrectAnswers: ["F"]
     },
     {
-        question: "True or false: The government can search me without a warrant",
+        question: "True or false: The government can NOT search me without a warrant",
         options: ["T", "F"],
-        correctAnswer: "F",
-        incorrectAnswers: ["T"]
+        correctAnswer: "T",
+        incorrectAnswers: ["F"]
     },
     {
-        question: "True or false: The house of representatives is part of the Senate",
+        question: "True or false: The house of representatives is a part of Congress, along with the Senate",
         options: ["T", "F"],
-        correctAnswer: "F",
+        correctAnswer: "T",
         incorrectAnswers: ["T"]
     },
     {
@@ -140,7 +140,7 @@ function randQuestion() {
 
     document.getElementById("randQuestion").textContent = randomQuestion;
     document.getElementById("options").style.display = "block";
-
+    
     // Set the text content of labels inside buttons to the options
     for (let i = 0; i < randomOptions.length; i++) {
         const optionLabel = document.getElementById(`question${i + 1}`);
@@ -148,6 +148,8 @@ function randQuestion() {
 
         // Add click event listener to each option button
         optionLabel.parentNode.addEventListener("click", function () {
+
+            
             // Check if the selected option is correct
             if (randomOptions[i] === correctAnswer) {
                 document.getElementById("randQuestion").textContent = "Correct!";
@@ -160,4 +162,8 @@ function randQuestion() {
             }
         });
     }
+}
+
+function clickWarning() {
+    document.getElementById("warningDiv").style.display = "none";
 }

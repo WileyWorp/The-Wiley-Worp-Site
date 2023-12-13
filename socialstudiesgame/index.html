@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="app.js"></script>
 </head>
+
 <body>
     <h1>A Constitutional Adventure: The Game: The Board Game</h1>
     <div>
@@ -22,5 +24,14 @@
         <button><label id="question2">placeholder</label></button>
         <button><label id="question3">placeholder</label></button>
     </div>
+    <div id="warningDiv" style="display:flex">
+        <h1 class="warning">WARNING! There is one bug that I cannot find a solution to in time to turn in this game, the
+            true or false <br> will have a third option that is not True or False, if you click it then you get the
+            question wrong..So don't click it
+        </h1>
+        <button onclick="clickWarning()" style="margin-left:10px;height:50px;margin-top:30px;">Okay!</button>
+    </div>
+
 </body>
+
 </html>
