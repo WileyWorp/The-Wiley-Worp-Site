@@ -39,4 +39,8 @@ div {
     display: none;
 }
 
+#variableOption {
+    display: inline;
+}
+
 /* Add more styles as needed for your specific content */
