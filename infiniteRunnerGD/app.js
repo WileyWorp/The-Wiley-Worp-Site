@@ -14,17 +14,19 @@ kaboom({
     background: [200,200,200],
 })
 
+
+if (!localStorage.pastHighScore) {
+    localStorage.setItem("pastHighScore", 0)
+}
+
 scene("game", () => {
-setGravity(500);
+setGravity(2000);
+var MOVE_SPEED = 500;
+const JUMP_FORCE = 900;
 
-var moveObstacles = false;
+var moveObstacles = true;
 
-setTimeout(function () {
-    moveObstacles = true;
-}, 2000)
-
-const MOVE_SPEED = 250;
-const JUMP_FORCE = 275;
+// localStorage
 
 // Load Sprites
 loadSprite("player", "sprites/player.png");
@@ -32,54 +34,54 @@ loadSprite("spike", "sprites/spike.png");
 
 // Player Object
 const player = add([
-    rect(40, 40),
+    rect(50, 50),
     color(0,0,0),
     pos(100, 100),
     area(),
     body(),
     z(2),
+    scale(2),
 "player",
     {
         dead: false,
-        speed: 100,
     },
 ])
 
 // movement
 onKeyPress("up", () => {
-    if (player.isGrounded()) {
+    if (player.isGrounded() && player.dead === false) {
     player.jump(JUMP_FORCE, 0)
     }
 })
 
 // Floor
 const floor = add([
-    rect(1280, 300),
+    rect(window.innerWidth, 300),
     color(100,100,100),
-    pos(0, 420),
+    pos(0, window.innerHeight*.77),
     area(),
     z(0),
+    scale(2),
     "floor",
     body({ isStatic: true })
 ])
 
-player.onCollide("floor", () => {
-    console.log("Collided!")
-})
-
 // obstacles
 function spawnObstacles() {
-    add([
-        rect(45, 50),
-        color(255, 255, 255),
-        pos(1000, 370),
-        area(),
-        body({ isStatic: true }),
-        offscreen({ destroy: true }),
-        "obstacle"
-    ]);
-
-    wait(rand(1.5, 2), spawnObstacles);
+    if (moveObstacles === true) {
+        add([
+            rect(45, 45),
+            color(255, 255, 255),
+            pos(window.innerWidth, window.innerHeight*.70),
+            area(),
+            body({ isStatic: false }),
+            offscreen({ destroy: true }),
+            scale(1.5),
+            "obstacle"
+        ]);
+    }
+    
+        wait(rand(.75, 1.75), spawnObstacles);
 }
 
 spawnObstacles();
@@ -92,24 +94,45 @@ onUpdate("obstacle", (obstacle) => {
 
 
 player.onCollide("obstacle", () => {
-    addKaboom(player.pos);
-    shake();
-    setTimeout(function () {
-        go("lose")
-    }, 1000)
+    MOVE_SPEED = 0; 
+    player.dead = true;
+    shake(2)
+    add([
+        text("Press space to restart"),
+        pos(window.innerWidth*.40, window.innerHeight*.40),
+    ])
+    onKeyPress("space", () => go("game"));
+
+});
+
+let score = 0;
+let pastHighScore = localStorage.getItem("pastHighScore");
+
+const scoreLabel = add([
+    text(score),
+    pos(24, 24)
+]);
+
+const pastHighScoreLabel = add([
+    text(pastHighScore),
+    pos(24, 100)
+]);
+
+onUpdate(() => {
+    if (player.dead === false) {
+        score++;
+    } else if (score > pastHighScore) {
+        localStorage.setItem("pastHighScore", score)
+    }
+    scoreLabel.text = "Score: " + score;
+    pastHighScoreLabel.text = "Past high score: " + pastHighScore;
 });
 
 });
 
 // game over
 scene("lose", () => {
-    add([
-        text("Game Over"),
-        text("Press space to restart"),
-        pos(center()),
-        anchor("center"),
-    ])
-    onKeyPress("space", () => go("game"));
+
 });
 
 go("game");
