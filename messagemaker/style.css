@@ -1,0 +1,39 @@
+#computer1 {
+    height: 10vh;
+    width: 10vw;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+}
+
+#computer2 {
+    height: 10vh;
+    width: 10vw;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 65%;
+}
+
+#wire {
+    background-color: orange;
+    height: 1vh;
+    width: 36vw;
+    position: absolute;
+    top: 55%;
+    left: 33%;
+    z-index: -1;
+}
+
+.inputBox {
+    height: 10vh;
+    width: 10vw;
+    background-color: black;
+    color: rgb(0, 255, 0);
+    display: block;
+}
+
+#output {
+    color: rgb(0, 255, 0);
+}
