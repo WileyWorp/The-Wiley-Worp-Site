@@ -30,7 +30,13 @@ var moveObstacles = true;
 
 // Load Sprites
 loadSprite("player", "sprites/player.png");
-loadSprite("spike", "sprites/spike.png");
+loadSprite("fish", "sprites/fish.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+        left: { from: 0, to: 1}
+    }
+});
 
 // Player Object
 const player = add([
@@ -70,8 +76,10 @@ const floor = add([
 function spawnObstacles() {
     if (moveObstacles === true) {
         add([
-            rect(45, 45),
-            color(255, 255, 255),
+            sprite("fish", {
+                animSpeed: .5,
+                frame: 0
+            }),
             pos(window.innerWidth, window.innerHeight*.70),
             area(),
             body({ isStatic: false }),
@@ -83,6 +91,7 @@ function spawnObstacles() {
     
         wait(rand(.75, 1.75), spawnObstacles);
 }
+
 
 spawnObstacles();
 
@@ -102,7 +111,6 @@ player.onCollide("obstacle", () => {
         pos(window.innerWidth*.40, window.innerHeight*.40),
     ])
     onKeyPress("space", () => go("game"));
-
 });
 
 let score = 0;
