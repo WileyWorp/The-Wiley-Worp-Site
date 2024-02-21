@@ -53,6 +53,22 @@ loadSprite("cancer", "sprites/cancer.png", {
     }
 });
 
+loadSprite("poison", "sprites/poison.png", {
+    sliceX: 8,
+    sliceY: 1,
+    anims: {
+        left: { from: 0, to: 1, to: 2, to: 3, to: 4, to:5, to:6, to:7}
+    }
+});
+
+loadSprite("floor", "sprites/floor.png", {
+    sliceX: 1,
+    sliceY: 1,
+    anims: {
+        idle: { from: 0, to: 0}
+    }
+});
+
 // Player Object
 const player = add([
     sprite("player", {
@@ -82,16 +98,36 @@ onKeyPress("up", () => {
 })
 
 // Floor
-const floor = add([
-    rect(window.innerWidth, 300),
-    color(100,100,100),
+
+add([
+    sprite("floor"),
     pos(0, window.innerHeight*.77),
     area(),
     z(0),
-    scale(2),
-    "floor",
+    scale(.75),
     body({ isStatic: true })
 ])
+
+setInterval(function () {
+    const floor = add([
+        sprite("floor"),
+        pos(window.innerWidth, window.innerHeight*.77),
+        area(),
+        z(0),
+        scale(.75),
+        "floor",
+        body({ isStatic: true })
+    ])
+
+    setInterval(function () {
+        floor.play("idle");
+    }, 1000)
+}, 1000);
+
+onUpdate("floor", (floor) => {
+    if (moveObstacles === true)
+    floor.move(-MOVE_SPEED, 0)
+})
 
 // obstacles
 setInterval(function () {
@@ -116,7 +152,7 @@ setInterval(function () {
 setInterval(function () {
     const cancer = add([
         sprite("cancer", {
-            animSpeed: .75,
+            animSpeed: 1,
             frame: 0
         }),
         pos(window.innerWidth, window.innerHeight*.70),
@@ -132,6 +168,26 @@ setInterval(function () {
     }, 750)
 }, 2000);
 
+setInterval(function () {
+    const poison = add([
+        sprite("poison", {
+            animSpeed: .5,
+            frame: 0
+        }),
+        pos(window.innerWidth, window.innerHeight*.70),
+        area(),
+        body({ isStatic: false }),
+        offscreen({ destroy: true }),
+        scale(1.5),
+        "obstacle"
+    ]);
+
+    setInterval(function () {
+        poison.play("left");
+    }, 1000)
+}, 3000);
+
+
 onUpdate("obstacle", (obstacle) => {
     if (moveObstacles === true)
     obstacle.move(-MOVE_SPEED, 0)
@@ -146,8 +202,8 @@ player.onCollide("obstacle", () => {
         text("Press space to restart"),
         pos(window.innerWidth*.40, window.innerHeight*.40),
     ])
+    window.clearInterval()
     onKeyPress("space", () => go("game"));
-
 });
 
 let score = 0;
@@ -176,8 +232,5 @@ onUpdate(() => {
 });
 
 // game over
-scene("lose", () => {
-
-});
 
 go("game");
