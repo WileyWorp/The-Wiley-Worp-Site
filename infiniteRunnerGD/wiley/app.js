@@ -253,7 +253,7 @@ player.onCollide("obstacle", () => {
         pos(window.innerWidth*.40, window.innerHeight*.40),
     ])
     window.clearInterval()
-    onKeyPress("space", () => go("game"));
+    onKeyPress("space", () => location.reload());
 });
 
 let score = 0;
