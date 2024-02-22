@@ -11,7 +11,7 @@ kaboom({
     height: window.innerHeight,
     font: "sans-serif",
     canvas: document.querySelector("#mycanvas"),
-    background: [200,200,200],
+    background: [125, 250, 250],
 })
 
 
@@ -77,10 +77,9 @@ const player = add([
     
     pos(100, 100),
     area(),
-    body(),
-    z(2),
+    body({ isStatic: false }),
+    z(4),
     scale(2),
-    anchor("center"),
 "player",
     {
         dead: false,
@@ -99,30 +98,81 @@ onKeyPress("up", () => {
 
 // Floor
 
-add([
+const baseFLoor = add([
     sprite("floor"),
     pos(0, window.innerHeight*.77),
     area(),
-    z(0),
+    z(-5),
     scale(.75),
-    body({ isStatic: true })
+    body({ isStatic: true }),
+    "floor"
 ])
 
-setInterval(function () {
-    const floor = add([
-        sprite("floor"),
-        pos(window.innerWidth, window.innerHeight*.77),
-        area(),
-        z(0),
-        scale(.75),
-        "floor",
-        body({ isStatic: true })
-    ])
+const baseFLoor2 = add([
+    sprite("floor"),
+    pos(810, window.innerHeight*.77),
+    area(),
+    z(0),
+    scale(.75),
+    body({ isStatic: true }),
+    "floor"
+])
+
+const baseFLoor3 = add([
+    sprite("floor"),
+    pos(1600, window.innerHeight*.77),
+    area(),
+    z(0),
+    scale(.75),
+    body({ isStatic: true }),
+    "floor"
+])
+const baseFLoor4 = add([
+    sprite("floor"),
+    pos(2400, window.innerHeight*.77),
+    area(),
+    z(0),
+    scale(.75),
+    body({ isStatic: true }),
+    "floor"
+])
+
+const baseFLoor5 = add([
+    sprite("floor"),
+    pos(3200, window.innerHeight*.77),
+    area(),
+    z(0),
+    scale(.75),
+    body({ isStatic: true }),
+    "floor"
+])
+
 
     setInterval(function () {
-        floor.play("idle");
-    }, 1000)
-}, 1000);
+        const floor = add([
+            sprite("floor"),
+            pos(window.innerWidth, window.innerHeight*.77),
+            area(),
+            z(0),
+            scale(.75),
+            "floor",
+            body({ isStatic: true })
+        ])
+    
+        setInterval(function () {
+            floor.play("idle");
+        }, 1000)
+    }, 1000);
+
+    const shadowFloor = add([
+        rect(100,100),
+        color( 0, 0, 0, 0 ),
+        pos(100, window.innerHeight*.77),
+        area(),
+        body({ isStatic: true}),
+        z(-9)
+    ])
+
 
 onUpdate("floor", (floor) => {
     if (moveObstacles === true)
