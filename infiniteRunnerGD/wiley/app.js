@@ -61,13 +61,15 @@ loadSprite("poison", "sprites/poison.png", {
     }
 });
 
-loadSprite("floor", "sprites/floor.png", {
-    sliceX: 1,
-    sliceY: 1,
+loadSprite("flooranim", "sprites/floorsheet.png", {
+    sliceX: 9.25,
+    sliceY: 2,
     anims: {
         left: { from: 0, to: 1, to: 2, to: 3, to: 4, to: 5, to: 6, to: 7, to: 8, to: 9, to: 10, to: 11, to: 12, to: 13, to: 14, to: 15, to: 16, to: 17, to: 18, to: 19, to: 20, to: 21, to: 22, to: 23, to: 24, to: 25, to: 26, to: 27, to: 28, to: 29, to: 30, to: 31, to: 32}
     }
 });
+
+
 
 // Player Object
 const player = add([
@@ -98,71 +100,24 @@ onKeyPress("up", () => {
 
 // Floor
 
-const baseFLoor = add([
-    sprite("floor"),
-    pos(0, window.innerHeight*.77),
-    area(),
-    z(-5),
-    scale(.75),
-    body({ isStatic: true }),
-    "floor"
-])
-
-const baseFLoor2 = add([
-    sprite("floor"),
-    pos(810, window.innerHeight*.77),
-    area(),
-    z(0),
-    scale(.75),
-    body({ isStatic: true }),
-    "floor"
-])
-
-const baseFLoor3 = add([
-    sprite("floor"),
-    pos(1600, window.innerHeight*.77),
-    area(),
-    z(0),
-    scale(.75),
-    body({ isStatic: true }),
-    "floor"
-])
-const baseFLoor4 = add([
-    sprite("floor"),
-    pos(2400, window.innerHeight*.77),
-    area(),
-    z(0),
-    scale(.75),
-    body({ isStatic: true }),
-    "floor"
-])
-
-const baseFLoor5 = add([
-    sprite("floor"),
-    pos(3200, window.innerHeight*.77),
-    area(),
-    z(0),
-    scale(.75),
-    body({ isStatic: true }),
-    "floor"
-])
-
+    const floor = add([
+        sprite('flooranim', {
+            animSpeed: .75,
+            frame: 0
+        }),
+        pos(0, window.innerHeight*.70),
+        area(),
+        body({ isStatic: true }),
+        scale(10),
+        z(1),
+        "floor"
+    ])
 
     setInterval(function () {
-        const floor = add([
-            sprite("floor"),
-            pos(window.innerWidth, window.innerHeight*.77),
-            area(),
-            z(0),
-            scale(.75),
-            "floor",
-            body({ isStatic: true })
-        ])
-    
-        setInterval(function () {
-            floor.play("idle");
-        }, 1000)
-    }, 1000);
+        floor.play("left");
+    }, 1000)
+
+
 
     const shadowFloor = add([
         rect(100,100),
@@ -173,12 +128,6 @@ const baseFLoor5 = add([
         z(-9)
     ])
 
-
-onUpdate("floor", (floor) => {
-    if (moveObstacles === true)
-    floor.move(-MOVE_SPEED, 0)
-})
-
 // obstacles
 setInterval(function () {
     const fish = add([
@@ -186,11 +135,12 @@ setInterval(function () {
             animSpeed: .5,
             frame: 0
         }),
-        pos(window.innerWidth, window.innerHeight*.70),
+        pos(window.innerWidth, window.innerHeight*.5),
         area(),
         body({ isStatic: false }),
         offscreen({ destroy: true }),
         scale(1.5),
+        z(1),
         "obstacle"
     ]);
 
@@ -205,18 +155,19 @@ setInterval(function () {
             animSpeed: 1,
             frame: 0
         }),
-        pos(window.innerWidth, window.innerHeight*.70),
+        pos(window.innerWidth, window.innerHeight*.50),
         area(),
         body({ isStatic: false }),
         offscreen({ destroy: true }),
         scale(1.5),
+        z(1),
         "obstacle"
     ]);
 
     setInterval(function () {
         cancer.play("left");
     }, 750)
-}, 2000);
+}, 1750);
 
 setInterval(function () {
     const poison = add([
@@ -229,13 +180,14 @@ setInterval(function () {
         body({ isStatic: false }),
         offscreen({ destroy: true }),
         scale(1.5),
+        z(1),
         "obstacle"
     ]);
 
     setInterval(function () {
         poison.play("left");
     }, 1000)
-}, 3000);
+}, 3500);
 
 
 onUpdate("obstacle", (obstacle) => {
