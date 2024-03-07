@@ -26,7 +26,15 @@ const JUMP_FORCE = 900;
 
 var moveObstacles = true;
 
-// localStorage
+// background
+
+loadSprite("background", "sprites/background.png")
+
+const background = add([
+    sprite("background"),
+    pos(0,0),
+    scale(4)
+])
 
 // Load Sprites
 loadSprite("player", "sprites/player.png", {
@@ -65,7 +73,8 @@ loadSprite("flooranim", "sprites/floorsheet.png", {
     sliceX: 9.25,
     sliceY: 2,
     anims: {
-        left: { from: 0, to: 1, to: 2, to: 3, to: 4, to: 5, to: 6, to: 7, to: 8, to: 9, to: 10, to: 11, to: 12, to: 13, to: 14, to: 15, to: 16, to: 17, to: 18, to: 19, to: 20, to: 21, to: 22, to: 23, to: 24, to: 25, to: 26, to: 27, to: 28, to: 29, to: 30, to: 31, to: 32}
+        left: { from: 0, to: 1, to: 2, to: 3, to: 4, to: 5, to: 6, to: 7, to: 8, to: 9, to: 10, to: 11, to: 12, to: 13, to: 14, to: 15, to: 16, to: 17, to: 18, to: 19, to: 20, to: 21, to: 22, to: 23, to: 24, to: 25, to: 26, to: 27, to: 28, to: 29, to: 30, to: 31, to: 32},
+        playerDead: { from: 0, to: 0}
     }
 });
 
@@ -147,7 +156,7 @@ setInterval(function () {
     setInterval(function () {
         fish.play("left");
     }, 1000)
-}, 4000);
+}, 5000);
 
 setInterval(function () {
     const cancer = add([
@@ -175,7 +184,7 @@ setInterval(function () {
             animSpeed: .5,
             frame: 0
         }),
-        pos(window.innerWidth, window.innerHeight*.70),
+        pos(window.innerWidth, window.innerHeight*.50),
         area(),
         body({ isStatic: false }),
         offscreen({ destroy: true }),
